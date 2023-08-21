@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs - @programador.cs</title>
+    <link rel="stylesheet" href="./estilos.css">
+
+</head>
+
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Oswald");
+body {
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  background: #212123;
+  color: #fff;
+  font-size: 20px;
+}
+
+.estrutura__grid {
+  list-style: none;
+  margin-left: -40px;
+}
+
+.estrutura__grid-elemento__inicial {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: -0.25em;
+  min-height: 1px;
+  padding-left: 40px;
+  vertical-align: top;
+}
+
+.estrutura__grid-elemento__inicial--1-of-3 {
+  width: 33.33333%;
+}
+
+.estrutura__grid-elemento__inicial--2-of-3 {
+  width: 66.66666%;
+}
+
+.conteudo__geral {
+  position: relative;
+  max-width: 900px;
+  margin: 100px auto 0;
+}
+
+.conteudo__geral .estrutura__grid-caixa div {
+  padding: 15px 20px 15px 40px;
+  margin-bottom: 10px;
+  color: #efefef;
+  background: #5e5e63;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  font-weight: 700;
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.conteudo__geral .estrutura__grid-caixa div:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.conteudo__geral .estrutura__grid-caixa div span.estrutura__grid-claro {
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  top: 24px;
+  left: 15px;
+  background-color: #efefef;
+  border-radius: 100%;
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.conteudo__geral
+  .estrutura__grid-caixa
+  div.estrutura__grid-selecionado
+  span.estrutura__grid-claro {
+  background-color: #8b80f9;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  top: 0;
+  border-radius: 0;
+}
+
+.conteudo__geral .estrutura__grid-caixa div.estrutura__grid-selecionado {
+  color: #8b80f9;
+  padding: 15px 20px 15px 20px;
+}
+
+ul.estrutura__grid-conteudo {
+  position: relative;
+  height: 0px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+ul.estrutura__grid-conteudo li {
+  opacity: 0;
+  transform: translateX(50px);
+  position: absolute;
+  list-style: none;
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+ul.estrutura__grid-conteudo li.estrutura__grid-selecionado {
+  transition-delay: 0.3s;
+  z-index: 2;
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+ul.estrutura__grid-conteudo li p {
+  margin: 0;
+}
+</style>
+
+<body>
+    <div class="conteudo__geral">
+        <div class="estrutura__grid">
+            <div class="estrutura__grid-elemento__inicial estrutura__grid-elemento__inicial--1-of-3">
+                <div class="estrutura__grid-caixa">
+                    <div class="estrutura__grid-selecionado"><span
+                            class="estrutura__grid-claro"></span><span>HTML</span></div>
+                    <div><span class="estrutura__grid-claro"></span><span>CSS</span></div>
+                    <div><span class="estrutura__grid-claro"></span><span>Javascript</span></div>
+                </div>
+            </div>
+            <div class="estrutura__grid-elemento__inicial estrutura__grid-elemento__inicial--2-of-3">
+                <ul class="estrutura__grid-conteudo">
+                    <li class="estrutura__grid-selecionado">
+                        <div>
+                            <p>HTML (Linguagem de Marcação de HiperTexto) é o bloco de construção mais básico da web.
+                                Define o significado e a estrutura do conteúdo da web. Outras tecnologias além do HTML
+                                geralmente são usadas para descrever a aparência/apresentação (CSS) ou a
+                                funcionalidade/comportamento (JavaScript) de uma página da web.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>
+                                CSS (Cascading Style Sheets) é um mecanismo para adicionar estilos a uma página web,
+                                aplicado diretamente nas tags HTML ou ficar contido dentro das tags < style>. Também é
+                                    possível, adicionar estilos adicionando um link para um arquivo CSS que contém os
+                                    estilos.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <p>
+                                JavaScript é uma linguagem de programação interpretada estruturada, de script em alto
+                                nível com tipagem dinâmica fraca e multiparadigma. Juntamente com HTML e CSS, o
+                                JavaScript é uma das três principais tecnologias da World Wide Web.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script src="./script.js"></script>
+</body>
+
+<script>
+  $(document).on(
+  "click",
+  ".conteudo__geral .estrutura__grid-caixa div",
+  function () {
+    var numberIndex = $(this).index();
+
+    if (!$(this).is("estrutura__grid-selecionado")) {
+      $(".conteudo__geral .estrutura__grid-caixa div").removeClass(
+        "estrutura__grid-selecionado"
+      );
+      $(".conteudo__geral ul li").removeClass("estrutura__grid-selecionado");
+
+      $(this).addClass("estrutura__grid-selecionado");
+      $(".conteudo__geral ul")
+        .find("li:eq(" + numberIndex + ")")
+        .addClass("estrutura__grid-selecionado");
+
+      var listItemHeight = $(".conteudo__geral ul")
+        .find("li:eq(" + numberIndex + ")")
+        .innerHeight();
+      $(".conteudo__geral ul").height(listItemHeight + "px");
+    }
+  }
+);
+</script>
+
+</html>

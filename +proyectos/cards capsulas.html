@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartões Expansivos - @programador.cs</title>
+    <link rel="stylesheet" href="./estilos.css" />
+  </head>
+
+  <style>
+    .boxi{
+      height: 85vh;
+      display: flex;
+      margin: 0;
+      background: #212123;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .conteudo__geral {
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .elemento__cartao {
+      width: 15vw;
+      height: 75vh;
+      background-position: center;
+      background-size: 75vh;
+      margin: 1vw;
+      border-radius: 3vw;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <div class="boxi">
+        <div class="conteudo__geral">
+      <div
+        class="elemento__cartao"
+        style="
+          background-image: url(https://images.pexels.com/photos/3794940/pexels-photo-3794940.jpeg);
+        "
+      ></div>
+      <div
+        class="elemento__cartao"
+        style="
+          background-image: url(https://images.pexels.com/photos/2832034/pexels-photo-2832034.jpeg);
+        "
+      ></div>
+      <div
+        class="elemento__cartao"
+        style="
+          background-image: url(https://images.pexels.com/photos/1078981/pexels-photo-1078981.jpeg);
+        "
+      ></div>
+      <div
+        class="elemento__cartao"
+        style="
+          background-image: url(https://images.pexels.com/photos/1710795/pexels-photo-1710795.jpeg);
+        "
+      ></div>
+      <div
+        class="elemento__cartao"
+        style="
+          background-image: url(https://images.pexels.com/photos/3464632/pexels-photo-3464632.jpeg);
+        "
+      ></div>
+        </div>
+    </div>
+    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+
+  <script>
+    const elTodosItems = document.querySelectorAll(".elemento__cartao");
+
+    const expand = (item, i) => {
+      elTodosItems.forEach((it, ind) => {
+        if (i === ind) return;
+        it.clicked = false;
+      });
+      gsap.to(elTodosItems, {
+        width: item.clicked ? "15vw" : "8vw",
+        duration: 2,
+        ease: "elastic(1, .6)",
+      });
+
+      item.clicked = !item.clicked;
+      gsap.to(item, {
+        width: item.clicked ? "42vw" : "15vw",
+        duration: 2.5,
+        ease: "elastic(1, .3)",
+      });
+    };
+
+    elTodosItems.forEach((item, i) => {
+      item.clicked = false;
+      item.addEventListener("click", () => expand(item, i));
+    });
+  </script>
+</html>
